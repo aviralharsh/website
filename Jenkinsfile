@@ -7,9 +7,7 @@ podTemplate(label: 'mypod', containers: [
         hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
     ]
     ) 
-      triggers {
-   	 githubPush()
-      }
+    properties([pipelineTriggers([githubPush()])])
       {
       node('mypod') {
             stage('Check running containers') {
